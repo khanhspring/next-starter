@@ -1,0 +1,103 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "airbnb",
+    "prettier",
+    "airbnb/hooks",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "tsx": true
+    },
+    "project": ["./tsconfig.json"],
+    "tsconfigRootDir": "./",
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": [
+    "import",
+    "jsx-a11y",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "check-file"
+  ],
+  "rules": {
+    "no-console": "error",
+    "react/require-default-props": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    // If you're using TypeScript, prop-types are not needed
+    "react/prop-types": "off",
+    // Allows you to skip explicit return types in TypeScript
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // Only .tsx files for JSX
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "js": "never",
+        "jsx": "never",
+        "ts": "never",
+        "tsx": "never"
+      }
+    ],
+    // TypeScript takes care of this
+    "import/no-unresolved": "off",
+    // Not needed in Next.js
+    "react/react-in-jsx-scope": "off",
+    // Allowing spread props
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "import/prefer-default-export": "off",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "react/no-array-index-key": [0],
+    "prettier/prettier": "error",
+    "react/function-component-definition": [0],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/{i,I}ndex.ts": "CAMEL_CASE"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    },
+    "import/resolver": {
+      "node": {
+        "extensions": [".js", ".jsx", ".ts", ".tsx"]
+      }
+    }
+  }
+}
