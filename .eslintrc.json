@@ -1,0 +1,141 @@
+{
+  "root": true,
+  "ignorePatterns": [
+    "!**/*",
+    ".next/**/*",
+    "next.config.js",
+    "lint-staged.config.js",
+    ".prettierrc.js",
+    "src/components/ui/*"
+  ],
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "extends": [
+    "next",
+    "next/core-web-vitals",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:react/recommended",
+    "plugin:jsx-a11y/recommended",
+    "plugin:prettier/recommended",
+    "plugin:sonarjs/recommended",
+    "plugin:react-hooks/recommended"
+  ],
+  "parserOptions": {
+    "ecmaVersion": 2021,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "tsx": true
+    },
+    "project": ["./tsconfig.json"],
+    "tsconfigRootDir": "./",
+    "parser": "@typescript-eslint/parser"
+  },
+  "plugins": [
+    "prettier",
+    "jsx-a11y",
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "simple-import-sort",
+    "check-file"
+  ],
+  "rules": {
+    "no-console": "error",
+    "react/require-default-props": "off",
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/no-explicit-any": "error",
+    // If you're using TypeScript, prop-types are not needed
+    "react/prop-types": "off",
+    // Allows you to skip explicit return types in TypeScript
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    // Only .tsx files for JSX
+    "react/jsx-filename-extension": [
+      1,
+      {
+        "extensions": [".tsx"]
+      }
+    ],
+    // Not needed in Next.js
+    "react/react-in-jsx-scope": "off",
+    // Allowing spread props
+    "react/jsx-props-no-spreading": "off",
+    "react-hooks/rules-of-hooks": "error",
+    "react-hooks/exhaustive-deps": "warn",
+    "jsx-a11y/anchor-is-valid": [
+      "error",
+      {
+        "components": ["Link"],
+        "specialLink": ["hrefLeft", "hrefRight"],
+        "aspects": ["invalidHref", "preferButton"]
+      }
+    ],
+    "no-nested-ternary": "off",
+    "react/no-array-index-key": [0],
+    "prettier/prettier": "error",
+    "react/function-component-definition": [0],
+    "simple-import-sort/imports": "error",
+    "simple-import-sort/exports": "error",
+    "check-file/filename-naming-convention": [
+      "error",
+      {
+        "**/{i,I}ndex.ts": "CAMEL_CASE"
+      }
+    ],
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        "ts": "never",
+        "tsx": "never",
+        "js": "never",
+        "jsx": "never"
+      }
+    ]
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "extends": ["airbnb-typescript"],
+      "rules": {}
+    },
+    {
+      "files": ["*.js", "*.jsx"],
+      "extends": ["airbnb"],
+      "rules": {}
+    },
+    {
+      "files": ["*.ts", "*.tsx", "*.js", "*.jsx"],
+      "rules": {
+        "simple-import-sort/imports": [
+          1,
+          {
+            "groups": [
+              // Packages `react` related packages come first.
+              ["^react", "^(next|swr|axios)", "^@mui", "^@?\\w"],
+              // Internal packages.
+              ["^(@|components)(/.*|$)"],
+              // Side effect imports.
+              ["^\\u0000"],
+              // Parent imports. Put `..` last.
+              ["^\\.\\.(?!/?$)", "^\\.\\./?$"],
+              // Other relative imports. Put same-folder imports and `.` last.
+              ["^\\./(?=.*/)(?!/?$)", "^\\.(?!/?$)", "^\\./?$"],
+              // Style imports.
+              ["^.+\\.?(css)$"]
+            ]
+          }
+        ],
+        "no-console": ["error", { "allow": ["warn", "error"] }]
+      }
+    }
+  ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
+}
