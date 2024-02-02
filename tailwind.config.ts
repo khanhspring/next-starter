@@ -14,6 +14,9 @@ const config: Config = {
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
     },
+    animation: {
+      'spin-quick': 'spin 0.5s ease-in-out infinite',
+    },
   },
   plugins: [],
 };

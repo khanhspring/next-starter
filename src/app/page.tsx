@@ -1,6 +1,7 @@
 import Link from 'next/link';
 
 import SignOutButton from '@/components/SignOutButton';
+import { Button } from '@/components/ui/atoms/Button/Button';
 import getCurrentSession from '@/lib/auth/getCurrentSession';
 
 export default async function Home() {
@@ -29,6 +30,7 @@ export default async function Home() {
           Sign In
         </Link>
       )}
+      <Button>Hello</Button>
     </main>
   );
 }

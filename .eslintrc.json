@@ -5,8 +5,7 @@
     ".next/**/*",
     "next.config.js",
     "lint-staged.config.js",
-    ".prettierrc.js",
-    "src/components/ui/*"
+    ".prettierrc.js"
   ],
   "env": {
     "browser": true,
@@ -15,14 +14,15 @@
   },
   "extends": [
     "next",
+    "eslint:recommended",
     "next/core-web-vitals",
-    "prettier",
     "plugin:@typescript-eslint/recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     "plugin:prettier/recommended",
     "plugin:sonarjs/recommended",
-    "plugin:react-hooks/recommended"
+    "plugin:react-hooks/recommended",
+    "prettier"
   ],
   "parserOptions": {
     "ecmaVersion": 2021,
@@ -41,7 +41,8 @@
     "react-hooks",
     "@typescript-eslint",
     "simple-import-sort",
-    "check-file"
+    "check-file",
+    "sonarjs"
   ],
   "rules": {
     "no-console": "error",
@@ -100,7 +101,10 @@
     {
       "files": ["*.ts", "*.tsx"],
       "extends": ["airbnb-typescript"],
-      "rules": {}
+      "rules": {
+        "@typescript-eslint/indent": "off",
+        "sonarjs/cognitive-complexity": "off"
+      }
     },
     {
       "files": ["*.js", "*.jsx"],
