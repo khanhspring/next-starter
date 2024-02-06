@@ -1,19 +1,44 @@
 import { FloatingOverlay, FloatingPortal } from '@floating-ui/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { cva } from 'class-variance-authority';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import { cn } from '@/lib/utils/tailwind';
 
 import { DrawerProps } from './types';
 
+const variants = cva(
+  'fixed z-[2000] bg-white shadow-2xl max-h-screen max-w-full',
+  {
+    variants: {
+      placement: {
+        left: 'top-0 left-0 bottom-0 border-r -translate-x-full',
+        right: 'right-0 top-0 bottom-0 border-l translate-x-full',
+        top: 'right-0 left-0 top-0 border-b -translate-y-full',
+        bottom: 'right-0 left-0 bottom-0 border-t translate-y-full',
+      },
+    },
+    defaultVariants: {
+      placement: 'left',
+    },
+  },
+);
+
+const exitTransforms = {
+  left: 'translate(-100%, 0)',
+  right: 'translate(100%, 0)',
+  top: 'translate(0, -100%)',
+  bottom: 'translate(0, 100%)',
+};
+
 export default function Drawer(props: DrawerProps) {
-  const { children, className, open, onOpenChange } = props;
+  const { placement = 'left', children, className, open, onOpenChange } = props;
 
   return (
     <FloatingPortal>
       <AnimatePresence>
         {open && (
-          <FloatingOverlay lockScroll>
+          <FloatingOverlay>
             <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -23,12 +48,9 @@ export default function Drawer(props: DrawerProps) {
             />
             <motion.div
               initial={{ opacity: 0 }}
-              animate={{ opacity: 1, transform: 'translateX(0)' }}
-              exit={{ opacity: 0.8, transform: 'translateX(-100%)' }}
-              className={cn(
-                'fixed top-0 left-0 h-screen z-[1000] -translate-x-full bg-white shadow-2xl border-r',
-                className,
-              )}
+              animate={{ opacity: 1, transform: 'translate(0, 0)' }}
+              exit={{ opacity: 0.9, transform: exitTransforms[placement] }}
+              className={cn(variants({ placement }), className)}
             >
               {children}
               <button

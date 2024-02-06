@@ -7,6 +7,7 @@ import Drawer from '@/components/ui/atoms/Drawer/Drawer';
 import { Input } from '@/components/ui/atoms/Input/Input';
 import { InputNumber } from '@/components/ui/atoms/InputNumber/InputNumber';
 import Popover from '@/components/ui/atoms/Popover/Popover';
+import DatePicker from '@/components/ui/atoms/DatePicker/DatePicker';
 
 export default function Components() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -57,6 +58,9 @@ export default function Components() {
           suffix={<span>USD</span>}
         />
       </div>
+      <div className="flex flex-col gap-5 justify-center w-full max-w-[500px]">
+        <DatePicker />
+      </div>
       <div className="flex flex-col gap-5 justify-center">
         <Button onClick={() => setDialogOpen(true)}>Open dialog</Button>
         <Dialog open={dialogOpen} onOpenChange={setDialogOpen}>
@@ -84,8 +88,12 @@ export default function Components() {
       </div>
       <div className="flex flex-col gap-5 justify-center">
         <Button onClick={() => setDrawerOpen(true)}>Open drawer</Button>
-        <Drawer open={drawerOpen} onOpenChange={setDrawerOpen}>
-          <div className="min-w-[500px] min-h-[200px]">hello</div>
+        <Drawer
+          open={drawerOpen}
+          onOpenChange={setDrawerOpen}
+          placement="bottom"
+        >
+          <div className="min-w-full min-h-[2000px] overflow-y-auto bg-red-300">hello</div>
         </Drawer>
       </div>
     </div>
