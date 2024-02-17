@@ -2,12 +2,13 @@
 import { useRef, useState } from 'react';
 
 import { Button } from '@/components/ui/atoms/Button/Button';
+import DatePicker from '@/components/ui/atoms/DatePicker/DatePicker';
 import Dialog from '@/components/ui/atoms/Dialog/Dialog';
 import Drawer from '@/components/ui/atoms/Drawer/Drawer';
 import { Input } from '@/components/ui/atoms/Input/Input';
 import { InputNumber } from '@/components/ui/atoms/InputNumber/InputNumber';
 import Popover from '@/components/ui/atoms/Popover/Popover';
-import DatePicker from '@/components/ui/atoms/DatePicker/DatePicker';
+import Select from '@/components/ui/atoms/Select/Select';
 
 export default function Components() {
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -60,6 +61,9 @@ export default function Components() {
       </div>
       <div className="flex flex-col gap-5 justify-center w-full max-w-[500px]">
         <DatePicker />
+      </div>
+      <div className="flex flex-col gap-5 justify-center w-full max-w-[500px]">
+        <Select />
       </div>
       <div className="flex flex-col gap-5 justify-center">
         <Button onClick={() => setDialogOpen(true)}>Open dialog</Button>

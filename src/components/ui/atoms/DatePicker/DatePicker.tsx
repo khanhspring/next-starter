@@ -2,6 +2,7 @@
 
 import { XCircleIcon } from '@heroicons/react/16/solid';
 import {
+  CalendarIcon,
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ChevronLeftIcon,
@@ -41,7 +42,7 @@ const variants = cva('bg-gray-100 flex items-center gap-1 w-full', {
 });
 
 const clearVariants = cva(
-  'flex items-center justify-center rounded-full cursor-pointer',
+  'flex items-center justify-center rounded-full cursor-pointer bg-gray-100',
   {
     variants: {
       size: {
@@ -77,7 +78,8 @@ export default function DatePicker(props: Props) {
           </span>
         ),
       }}
-      transitionName="rc-picker-scale"
+      suffixIcon={<CalendarIcon className="w-3.5 h-3.5" />}
+      placeholder="Hello"
     />
   );
 }
