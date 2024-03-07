@@ -2,5 +2,21 @@
 @tailwind components;
 @tailwind utilities;
 
+@import '~react-spring-bottom-sheet/dist/style.css';
 @import '../styles/date-picker.css';
 @import '../styles/select.css';
+@import '../styles/switch.css';
+@import '../styles/simplebar.css';
+
+
+@layer base {
+  :root {
+    --background: 240 12% 95%;
+    --sidebar: 265px;
+    --header: 50px;
+  }
+}
+
+input {
+  min-width: 0;
+}

@@ -1,5 +1,5 @@
 
-@import 'rc-picker/assets/index.css';
+@import '~rc-picker/assets/index.css';
 
 .rc-picker input {
   outline: none;

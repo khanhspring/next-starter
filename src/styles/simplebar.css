@@ -1,0 +1,13 @@
+@import '~simplebar-react/dist/simplebar.min.css';
+
+.simplebar-scrollbar:before {
+  border-radius: 0;
+}
+
+.simplebar-scrollbar.simplebar-visible:before {
+  opacity: 0.2;
+}
+
+.simplebar-track.simplebar-vertical {
+  width: 9px;
+}

@@ -1,7 +1,7 @@
 import Link from 'next/link';
 
 import SignOutButton from '@/components/SignOutButton';
-import { Button } from '@/components/ui/atoms/Button/Button';
+import { Button } from '@/components/atoms/Button/Button';
 import getCurrentSession from '@/lib/auth/getCurrentSession';
 
 export default async function Home() {

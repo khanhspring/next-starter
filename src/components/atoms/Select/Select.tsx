@@ -5,7 +5,12 @@ import RcSelect, { Option } from 'rc-select';
 import { VariantProps, cva } from 'class-variance-authority';
 import { XCircleIcon } from '@heroicons/react/16/solid';
 import { cn } from '@/lib/utils/tailwind';
-import { CheckIcon, ChevronDownIcon, XMarkIcon } from '@heroicons/react/24/outline';
+import {
+  CheckIcon,
+  ChevronDownIcon,
+  XMarkIcon,
+} from '@heroicons/react/24/outline';
+import React from 'react';
 
 const variants = cva('bg-gray-100 flex items-center gap-1 w-full', {
   variants: {
@@ -69,11 +74,17 @@ export default function Select(props: Props) {
       placeholder="Hello"
     >
       {[...Array(10)].map((item, index) => (
-        <>
-          <Option value={`jack ${index}`}>jack {index}</Option>
-          <Option value={`lucy ${index}`}>lucy {index}</Option>
-          <Option value={`yiminghe ${index}`}>yiminghe {index}</Option>
-        </>
+        <React.Fragment key={index}>
+          <Option key={`jack${index}`} value={`jack ${index}`}>
+            jack {index}
+          </Option>
+          <Option key={`lucy${index}`} value={`lucy ${index}`}>
+            lucy {index}
+          </Option>
+          <Option key={`yiminghe${index}`} value={`yiminghe ${index}`}>
+            yiminghe {index}
+          </Option>
+        </React.Fragment>
       ))}
     </RcSelect>
   );

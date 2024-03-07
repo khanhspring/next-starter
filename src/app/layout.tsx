@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 
 import AuthProvider from '@/components/providers/AuthProvider';
+import { cn } from '@/lib/utils/tailwind';
 
 import './globals.css';
 
@@ -19,7 +20,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={cn(inter.className, 'text-zinc-800')}>
         <AuthProvider>{children}</AuthProvider>
       </body>
     </html>
