@@ -10,7 +10,7 @@ export default function PrimaryLayout({ children }: PropsWithChildren) {
       <Sidebar />
       <div className="flex flex-col min-h-screen relative">
         <Header />
-        <main className="flex-1 px-8 mt-header min-h-[2000px]">{children}</main>
+        <main className="flex-1 px-8 mt-header">{children}</main>
         <Footer />
       </div>
     </div>

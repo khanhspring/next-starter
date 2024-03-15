@@ -4,8 +4,8 @@ import { Input } from '@/components/atoms/Input/Input';
 
 export default function Header() {
   return (
-    <header className="h-header fixed left-sidebar top-0 right-0 bg-white/50 backdrop-blur z-10 flex items-center px-8">
-      <div className="w-[350px] max-w-full">
+    <header className="h-header fixed left-sidebar top-0 right-0 bg-white/50 backdrop-blur z-10 flex items-center px-8 justify-center">
+      <div className="max-w-[400px] w-full">
         <Input
           radius="full"
           size="sm"

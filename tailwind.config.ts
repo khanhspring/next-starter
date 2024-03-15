@@ -29,6 +29,7 @@ const config: Config = {
       'spin-quick': 'spin 0.5s ease-in-out infinite',
     },
   },
-  plugins: [],
+  // eslint-disable-next-line import/no-extraneous-dependencies
+  plugins: [require('@tailwindcss/typography')],
 };
 export default config;

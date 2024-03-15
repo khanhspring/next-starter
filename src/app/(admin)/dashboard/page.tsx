@@ -1,9 +1,10 @@
+import PageContainer from '@/components/atoms/PageContainer';
 import PageTitle from '@/components/molecules/PageTitle';
 import FormEditor from '@/components/organisms/FormEditor';
 
 export default function DashboardPage() {
   return (
-    <div className="flex flex-col gap-3 py-5">
+    <PageContainer>
       <PageTitle
         title="Dashboard"
         breadcrumbItems={[
@@ -20,6 +21,6 @@ export default function DashboardPage() {
         </h1>
         <FormEditor />
       </div>
-    </div>
+    </PageContainer>
   );
 }
