@@ -1,60 +1,69 @@
 'use client';
+import {
+  BlockNoteSchema,
+  defaultBlockSpecs,
+  filterSuggestionItems,
+  insertOrUpdateBlock,
+} from '@blocknote/core';
+import {
+  BlockNoteView,
+  getDefaultReactSlashMenuItems,
+  SuggestionMenuController,
+  useCreateBlockNote,
+} from '@blocknote/react';
+import { InformationCircleIcon } from '@heroicons/react/24/outline';
 
-import BulletList from '@tiptap/extension-bullet-list';
-import ListItem from '@tiptap/extension-list-item';
-import OrderedList from '@tiptap/extension-ordered-list';
-import Underline from '@tiptap/extension-underline';
-import { EditorContent, useEditor } from '@tiptap/react';
-import StarterKit from '@tiptap/starter-kit';
+import { Alert } from './Alert';
 
-import Placeholder from '@tiptap/extension-placeholder';
-import FormattingMenu from './components/FormattingMenu';
-import Image from './components/Image';
-import SlashCommand from './components/SlashCommand';
-import { DBlock } from './components/dBlock';
-import { Document } from './doc';
+import '@blocknote/core/fonts/inter.css';
+import '@blocknote/react/style.css';
+
+const schema = BlockNoteSchema.create({
+  blockSpecs: {
+    // Adds all default blocks.
+    ...defaultBlockSpecs,
+    // Adds the Alert block.
+    alert: Alert,
+  },
+});
+
+const insertAlert = (editor: typeof schema.BlockNoteEditor) => ({
+  title: 'Alert',
+  onItemClick: () => {
+    insertOrUpdateBlock(editor, {
+      type: 'alert',
+    });
+  },
+  aliases: [
+    'alert',
+    'notification',
+    'emphasize',
+    'warning',
+    'error',
+    'info',
+    'success',
+  ],
+  group: 'Other',
+  icon: <InformationCircleIcon className="w-5 h-5" />,
+});
 
 const FormEditor = () => {
-  const editor = useEditor({
-    extensions: [
-      Document,
-      DBlock,
-      StarterKit.configure({
-        document: false,
-        dropcursor: {
-          width: 2,
-          class: 'notitap-dropcursor',
-          color: 'skyblue',
-        },
-      }),
-      Underline,
-      BulletList,
-      OrderedList,
-      ListItem,
-      SlashCommand,
-      Image,
-      Placeholder.configure({
-        placeholder: ({ node }) => {
-          if (node.type.name === 'heading') {
-            return 'What’s the title?';
-          }
-          return 'Can you add some further context?';
-        },
-      }),
-      DBlock,
-    ],
-    editorProps: {
-      attributes: {
-        class: 'prose prose-md mx-auto max-w-full focus:outline-none',
-      },
-    },
+  const editor = useCreateBlockNote({
+    schema,
   });
-
   return (
-    <>
-      <FormattingMenu editor={editor} />
-      <EditorContent editor={editor} className="form-editor" />
-    </>
+    <BlockNoteView editor={editor} theme="light" slashMenu={false}>
+      <SuggestionMenuController
+        triggerCharacter={'/'}
+        getItems={async (query) =>
+          // Gets all default slash menu items and `insertAlert` item.
+          filterSuggestionItems(
+            [...getDefaultReactSlashMenuItems(editor), insertAlert(editor)],
+            query,
+          )
+        }
+      />
+    </BlockNoteView>
   );
 };
 
